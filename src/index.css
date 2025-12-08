@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #0a0a0a;
+  --color-dark-lighter: #1a1a1a;
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+  --color-accent-dark: #f5576c;
+
+  --font-sans: 'Inter', sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    }
+
+    50% {
+      opacity: 0.5;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-white font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary;
+  }
+
+  .glass-card {
+    @apply bg-dark-lighter/80 backdrop-blur-md border border-white/10 rounded-xl shadow-xl transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-primary/50 shadow-primary/20 transform -translate-y-1;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/30 relative overflow-hidden;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary text-white rounded-full font-bold transition-all duration-300 hover:bg-primary/10 hover:border-accent hover:text-accent;
+  }
+
+  .nav-link {
+    @apply relative text-gray-300 hover:text-white transition-colors py-2;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
