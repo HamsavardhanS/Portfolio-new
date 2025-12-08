@@ -41,7 +41,7 @@ const Chatbot = () => {
             } else if (lowerMsg.includes('project') || lowerMsg.includes('work')) {
                 botResponse = "He has built cool stuff like Traffic Detection App and AI Chatbots. See the Projects section.";
             } else if (lowerMsg.includes('contact') || lowerMsg.includes('email') || lowerMsg.includes('hire')) {
-                botResponse = "You can reach him at khamsasanker06@gmail.com or use the Contact form below!";
+                botResponse = "You can reach him at hamsasanker06@gmail.com or use the Contact form below!";
             } else if (lowerMsg.includes('resume') || lowerMsg.includes('cv')) {
                 botResponse = "You can download the resume from the Hero section button!";
             }
