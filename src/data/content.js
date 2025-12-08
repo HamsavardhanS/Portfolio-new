@@ -57,7 +57,7 @@ export const content = {
                 ]
             },
             {
-                role: "Back Developer",
+                role: "Back-End Developer",
                 company: "Sri Krishna College of Technology",
                 period: "2024",
                 description: [
