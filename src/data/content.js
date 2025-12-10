@@ -32,7 +32,7 @@ export const content = {
                 company: "Suguna-Foods",
                 period: "2025",
                 description: [
-                    "Full Stack Chatbpt Faq based Application",
+                    "Full Stack Chatbot Faq based Application",
                     "Using stacks like Flutter and Spring-boot with MySQL"
                 ]
             },

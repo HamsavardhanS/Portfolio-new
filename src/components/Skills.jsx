@@ -10,7 +10,7 @@ const Skills = () => {
     const marqueeSkills = [...allSkills, ...allSkills, ...allSkills];
 
     return (
-        <section id="skills" className="py-20 bg-dark relative overflow-hidden">
+        <section id="skills" className="py-20 relative overflow-hidden">
             <div className="container-custom mb-12 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -18,16 +18,16 @@ const Skills = () => {
                     viewport={{ once: true }}
                 >
                     <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-2">My Arsenal</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">Skills & Technologies</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 transition-colors">Skills & Technologies</h3>
                 </motion.div>
             </div>
 
             {/* Marquee Container */}
-            <div className="relative flex overflow-hidden py-8 bg-white/5 backdrop-blur-sm -rotate-1 transform scale-110 border-y border-white/5">
+            <div className="relative flex overflow-hidden py-8 bg-gray-100 dark:bg-white/5 backdrop-blur-sm -rotate-1 transform scale-110 border-y border-gray-200 dark:border-white/5 transition-colors duration-300">
 
                 {/* Gradient Overlays for smooth fade effect at edges */}
-                <div className="absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-dark to-transparent" />
-                <div className="absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-dark to-transparent" />
+                <div className="absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-gray-50 dark:from-dark to-transparent transition-colors duration-300" />
+                <div className="absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-gray-50 dark:from-dark to-transparent transition-colors duration-300" />
 
                 <motion.div
                     className="flex gap-12 sm:gap-20 items-center whitespace-nowrap"
@@ -43,7 +43,7 @@ const Skills = () => {
                 >
                     {marqueeSkills.map((skill, idx) => (
                         <div key={idx} className="group relative flex flex-col items-center justify-center gap-2">
-                            <div className="text-5xl md:text-6xl text-gray-400 group-hover:text-primary transition-all duration-300 transform group-hover:scale-110 max-w-[80px] flex justify-center">
+                            <div className="text-5xl md:text-6xl text-gray-500 dark:text-gray-400 group-hover:text-primary transition-all duration-300 transform group-hover:scale-110 max-w-[80px] flex justify-center">
                                 <skill.icon />
                             </div>
                             <span className="opacity-0 group-hover:opacity-100 absolute -bottom-8 text-sm font-medium text-white transition-opacity duration-300 whitespace-nowrap bg-dark/80 px-2 py-1 rounded">
@@ -57,9 +57,9 @@ const Skills = () => {
             </div>
 
             {/* Optional: Second row moving in opposite direction for visual density */}
-            <div className="relative flex overflow-hidden py-8 mt-8 bg-white/5 backdrop-blur-sm rotate-1 transform scale-110 border-y border-white/5">
-                <div className="absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-dark to-transparent" />
-                <div className="absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-dark to-transparent" />
+            <div className="relative flex overflow-hidden py-8 mt-8 bg-gray-100 dark:bg-white/5 backdrop-blur-sm rotate-1 transform scale-110 border-y border-gray-200 dark:border-white/5 transition-colors duration-300">
+                <div className="absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-gray-50 dark:from-dark to-transparent transition-colors duration-300" />
+                <div className="absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-gray-50 dark:from-dark to-transparent transition-colors duration-300" />
 
                 <motion.div
                     className="flex gap-12 sm:gap-20 items-center whitespace-nowrap"

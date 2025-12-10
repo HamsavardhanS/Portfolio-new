@@ -5,7 +5,7 @@ import { content } from '../data/content';
 
 const Education = () => {
     return (
-        <section id="education" className="py-20 bg-dark-lighter relative overflow-hidden">
+        <section id="education" className="py-20 relative overflow-hidden">
             <div className="container-custom">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -14,7 +14,7 @@ const Education = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-2">My Journey</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white">Education & Experience</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white transition-colors">Education & Experience</h3>
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -24,10 +24,10 @@ const Education = () => {
                             <div className="p-3 bg-primary/20 rounded-lg text-primary">
                                 <FaGraduationCap size={24} />
                             </div>
-                            <h4 className="text-2xl font-bold text-white">Education</h4>
+                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white transition-colors">Education</h4>
                         </div>
 
-                        <div className="space-y-8 pl-4 border-l-2 border-white/5 relative">
+                        <div className="space-y-8 pl-4 border-l-2 border-gray-200 dark:border-white/5 relative transition-colors">
                             {[
                                 {
                                     degree: "Bachelor of Engineering",
@@ -59,15 +59,15 @@ const Education = () => {
                                     transition={{ delay: idx * 0.2 }}
                                     className="relative pl-8"
                                 >
-                                    <div className="absolute top-0 left-[-9px] w-4 h-4 bg-dark border-2 border-primary rounded-full" />
+                                    <div className="absolute top-0 left-[-9px] w-4 h-4 bg-gray-50 dark:bg-dark border-2 border-primary rounded-full transition-colors" />
                                     <div className="glass-card p-6 hover:-translate-y-1 transition-transform">
                                         <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">
                                             {item.year}
                                         </span>
-                                        <h5 className="text-xl font-bold text-white mb-1">{item.degree}</h5>
-                                        <p className="text-gray-400 font-medium mb-2">{item.field}</p>
+                                        <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-1 transition-colors">{item.degree}</h5>
+                                        <p className="text-gray-600 dark:text-gray-400 font-medium mb-2 transition-colors">{item.field}</p>
                                         <p className="text-gray-500 text-sm mb-4">{item.place}</p>
-                                        <p className="text-gray-400 text-sm leading-relaxed">
+                                        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors">
                                             {item.details}
                                         </p>
                                     </div>
@@ -82,10 +82,10 @@ const Education = () => {
                             <div className="p-3 bg-secondary/20 rounded-lg text-secondary">
                                 <FaBriefcase size={24} />
                             </div>
-                            <h4 className="text-2xl font-bold text-white">Experience</h4>
+                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white transition-colors">Experience</h4>
                         </div>
 
-                        <div className="space-y-8 pl-4 border-l-2 border-white/5 relative">
+                        <div className="space-y-8 pl-4 border-l-2 border-gray-200 dark:border-white/5 relative transition-colors">
                             {content.experience.items.map((item, idx) => (
                                 <motion.div
                                     key={idx}
@@ -95,16 +95,16 @@ const Education = () => {
                                     transition={{ delay: idx * 0.2 }}
                                     className="relative pl-8"
                                 >
-                                    <div className="absolute top-0 left-[-9px] w-4 h-4 bg-dark border-2 border-secondary rounded-full" />
+                                    <div className="absolute top-0 left-[-9px] w-4 h-4 bg-gray-50 dark:bg-dark border-2 border-secondary rounded-full transition-colors" />
                                     <div className="glass-card p-6 hover:-translate-y-1 transition-transform">
                                         <span className="inline-block px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full mb-3">
                                             {item.period}
                                         </span>
-                                        <h5 className="text-xl font-bold text-white mb-1">{item.role}</h5>
-                                        <p className="text-gray-400 font-medium mb-4">{item.company}</p>
+                                        <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-1 transition-colors">{item.role}</h5>
+                                        <p className="text-gray-600 dark:text-gray-400 font-medium mb-4 transition-colors">{item.company}</p>
                                         <ul className="space-y-2">
                                             {item.description.map((point, pointIdx) => (
-                                                <li key={pointIdx} className="text-gray-400 text-sm flex gap-2">
+                                                <li key={pointIdx} className="text-gray-600 dark:text-gray-400 text-sm flex gap-2 transition-colors">
                                                     <span className="text-secondary mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary block flex-shrink-0" />
                                                     {point}
                                                 </li>

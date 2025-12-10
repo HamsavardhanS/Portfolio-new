@@ -4,7 +4,7 @@ import { content } from '../data/content';
 
 const About = () => {
     return (
-        <section id="about" className="py-20 bg-dark-lighter relative overflow-hidden">
+        <section id="about" className="py-20 relative overflow-hidden">
             <div className="container-custom">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -35,22 +35,22 @@ const About = () => {
                     {/* Content Side */}
                     <div>
                         <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-2">Who I Am</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                        <h3 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white transition-colors">
                             {content.about.title}
                         </h3>
 
-                        <div className="space-y-4 text-gray-300 leading-relaxed mb-8">
+                        <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed mb-8 transition-colors">
                             {content.about.bio.map((paragraph, idx) => (
                                 <p key={idx}>{paragraph}</p>
                             ))}
                         </div>
 
-                        <h4 className="text-xl font-semibold text-white mb-4">Interests & Passions</h4>
+                        <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 transition-colors">Interests & Passions</h4>
                         <div className="flex flex-wrap gap-3">
                             {content.about.interests.map((interest, idx) => (
                                 <span
                                     key={idx}
-                                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 hover:bg-primary/20 hover:border-primary/50 hover:text-white transition-all cursor-default"
+                                    className="px-4 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-sm text-gray-700 dark:text-gray-300 hover:bg-primary/20 hover:border-primary/50 hover:text-primary dark:hover:text-white transition-all cursor-default"
                                 >
                                     {interest}
                                 </span>

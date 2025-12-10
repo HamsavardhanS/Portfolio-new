@@ -4,9 +4,9 @@ import { FaHeart, FaCoffee } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="py-8 bg-dark-lighter border-t border-white/5">
+        <footer className="py-8 bg-gray-100 dark:bg-dark-lighter border-t border-gray-200 dark:border-white/5 transition-colors">
             <div className="container-custom text-center">
-                <p className="text-gray-400 mb-2">
+                <p className="text-gray-600 dark:text-gray-400 mb-2 transition-colors">
                     {content.footer.text}
                 </p>
                 <p className="flex items-center justify-center gap-2 text-gray-500 text-sm">

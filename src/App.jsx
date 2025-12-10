@@ -13,6 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/Chatbot';
 import Certificates from './components/Certificates';
 import Resume from './components/Resume';
+import MeanderingBackground from './components/MeanderingBackground';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -26,23 +27,26 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-dark min-h-screen text-white">
+    <div className="bg-gray-50 dark:bg-dark min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
       <AnimatePresence>
         {loading && <LoadingScreen />}
       </AnimatePresence>
 
       {!loading && (
         <>
-          <Navbar />
-          <Hero />
-          <About />
-          <Skills />
-          <Education />
-          <Projects />
-          <Certificates />
-          <Resume />
-          <Contact />
-          <Footer />
+          <MeanderingBackground />
+          <div className="relative z-10">
+            <Navbar />
+            <Hero />
+            <About />
+            <Skills />
+            <Education />
+            <Projects />
+            <Certificates />
+            <Resume />
+            <Contact />
+            <Footer />
+          </div>
           <ScrollToTop />
           <Chatbot />
         </>

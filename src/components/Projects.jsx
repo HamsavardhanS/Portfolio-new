@@ -17,7 +17,7 @@ const Projects = () => {
     };
 
     return (
-        <section id="projects" className="py-20 bg-dark relative">
+        <section id="projects" className="py-20 relative">
             <div className="container-custom">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -26,7 +26,7 @@ const Projects = () => {
                     className="text-center mb-12"
                 >
                     <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-2">Portfolio</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-8">Featured Projects</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 transition-colors">Featured Projects</h3>
 
                     {/* Project Filters */}
                     <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -36,7 +36,7 @@ const Projects = () => {
                                 onClick={() => handleFilterChange(category)}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === category
                                     ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/25 scale-105'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                    : 'bg-gray-200 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/10 hover:text-gray-900 dark:hover:text-white'
                                     }`}
                             >
                                 {category}
@@ -81,10 +81,10 @@ const Projects = () => {
 
                                 {/* Content */}
                                 <div className="p-6">
-                                    <h4 className="text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
                                         {project.title}
                                     </h4>
-                                    <p className="text-gray-400 text-sm mb-5 line-clamp-3 leading-relaxed">
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 line-clamp-3 leading-relaxed transition-colors">
                                         {project.description}
                                     </p>
 
@@ -93,7 +93,7 @@ const Projects = () => {
                                         {project.techStack.map((tech, idx) => (
                                             <span
                                                 key={idx}
-                                                className="px-3 py-1 bg-white/5 text-gray-300 text-xs font-medium rounded-full border border-white/5"
+                                                className="px-3 py-1 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-full border border-gray-200 dark:border-white/5 transition-colors"
                                             >
                                                 {tech}
                                             </span>
@@ -101,10 +101,10 @@ const Projects = () => {
                                     </div>
 
                                     {/* Links */}
-                                    <div className="flex gap-4 pt-4 border-t border-white/5">
+                                    <div className="flex gap-4 pt-4 border-t border-gray-200 dark:border-white/5 transition-colors">
                                         <a
                                             href={project.github}
-                                            className="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white hover:underline transition-all"
+                                            className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white hover:underline transition-all"
                                         >
                                             <FaGithub size={18} /> Source Code
                                         </a>

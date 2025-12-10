@@ -16,10 +16,10 @@ const Hero = () => {
             className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
         >
             {/* Background Elements */}
-            <div className="absolute inset-0 bg-dark z-0">
+            <div className="absolute inset-0 bg-gray-50 dark:bg-dark z-0 transition-colors duration-300">
                 <div className="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse-glow" />
                 <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] animate-pulse-glow" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_transparent_0%,_#0a0a0a_100%)] z-10" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_transparent_0%,_#f9fafb_100%)] dark:bg-[radial-gradient(circle_at_center,_transparent_0%,_#0a0a0a_100%)] z-10 transition-all duration-300" />
             </div>
 
             <div className="container-custom relative z-20 text-center">
@@ -39,12 +39,12 @@ const Hero = () => {
                         👋 Welcome to my Digital Universe
                     </motion.div>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white transition-colors duration-300">
                         I'm <span className="gradient-text">{content.hero.name}</span>
                     </h1>
 
                     <motion.div
-                        className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light mb-8 h-8"
+                        className="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-light mb-8 h-8 transition-colors duration-300"
                     >
                         {content.hero.role.split("").map((char, index) => (
                             <motion.span
@@ -62,7 +62,7 @@ const Hero = () => {
                         ))}
                     </motion.div>
 
-                    <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed transition-colors duration-300">
                         {content.hero.tagline}
                     </p>
 

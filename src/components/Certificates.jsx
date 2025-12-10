@@ -33,7 +33,7 @@ const Certificates = () => {
     ];
 
     return (
-        <section id="certificates" className="py-20 bg-dark-lighter relative overflow-hidden">
+        <section id="certificates" className="py-20 relative overflow-hidden">
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -z-0" />
 
@@ -60,13 +60,13 @@ const Certificates = () => {
 
                             {/* Content */}
                             <div className="p-6">
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{cert.title}</h3>
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">{cert.title}</h3>
                                 <p className="text-primary font-medium mb-1">{cert.issuer}</p>
-                                <p className="text-gray-400 text-sm mb-4">{cert.date}</p>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 transition-colors">{cert.date}</p>
 
                                 <a
                                     href={cert.link}
-                                    className="inline-block w-full text-center py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium transition-colors border border-white/5 hover:border-white/20"
+                                    className="inline-block w-full text-center py-2 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-900 dark:text-white font-medium transition-colors border border-gray-200 dark:border-white/5 hover:border-gray-300 dark:hover:border-white/20"
                                 >
                                     View Certificate
                                 </a>
