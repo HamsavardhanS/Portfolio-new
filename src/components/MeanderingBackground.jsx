@@ -9,63 +9,31 @@ const MeanderingBackground = () => {
         restDelta: 0.001
     });
 
-    // Create a path that winds down the screen
-    // We'll use a simple SVG path that curves left and right
-    // This expects the container to be very tall (the full height of the app)
-
-    // To make it truly responsive and "meander" through sections, we ideally need to know section positions.
-    // For a visual background effect, we can approximate with a long repeating curve.
-
-    // Let's create a path for a standard long page. 
-    // We will use a pattern or a very long path string.
-
-    const [pathLength, setPathLength] = useState(0);
-
-    // Height calculation is tricky for a fixed background covering scrollable content.
-    // Instead, let's make a fixed container with a path that "draws" itself or moves.
-    // OR: A fixed SVG that stays on screen, but the line animates?
-    // The user said "timeline theme... turn from left to right for each section".
-    // This implies the line physically connects sections which are spaced out.
-
-    // Strategy: An absolute positioned SVG that spans the entire document height.
     const [docHeight, setDocHeight] = useState(0);
 
     useEffect(() => {
-        const updateHeight = () => {
-            const body = document.body;
-            const html = document.documentElement;
-            const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-            setDocHeight(height);
-        };
+        // Use ResizeObserver for more accurate height tracking of the container
+        const observer = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                setDocHeight(entry.contentRect.height);
+            }
+        });
 
-        updateHeight();
-        window.addEventListener('resize', updateHeight);
-        // Recalculate periodically in case of lazy loaded content resizing page
-        const interval = setInterval(updateHeight, 2000);
+        // Observe the body or the #root element
+        const root = document.getElementById('root');
+        if (root) {
+            observer.observe(root);
+            setDocHeight(root.scrollHeight); // Initial set
+        }
 
-        return () => {
-            window.removeEventListener('resize', updateHeight);
-            clearInterval(interval);
-        };
+        return () => observer.disconnect();
     }, []);
-
-    // Generate a path that zig-zags
-    // Start top center
-    // Curve to Left (Section 1) -> Right (Section 2) -> Left (Section 3) ...
-    // Sections: Hero, About, Skills, Education, Projects, Certificates, Resume, Contact
-    // Approx 8 turns.
 
     const width = typeof window !== 'undefined' ? window.innerWidth : 1000;
     const center = width / 2;
-    const amp = width * 0.35; // Amplitude of the curve (how far left/right)
-
-    // We can construct a cubic bezier curve string
-    // M center 0 
-    // C ...
-
-    // Simple sine wave approximation using cubic beziers
-    // height of one "wave" (2 sections)
+    const amp = width * 0.35;
     const waveHeight = 1200;
+    // Calculate exact number of waves needed to cover height, avoid massive overshoot
     const numWaves = Math.ceil(docHeight / waveHeight) + 1;
 
     let d = `M ${center} 0`;
@@ -75,23 +43,23 @@ const MeanderingBackground = () => {
         const endY = (i + 1) * waveHeight;
         const midY = startY + (waveHeight / 2);
 
-        // Curve to Left first? Then Right.
-        // Q control-point end-point
-        // C cp1 cp2 end
-
         // Go Left
         d += ` C ${center - amp} ${startY + (waveHeight * 0.25)}, ${center - amp} ${midY - (waveHeight * 0.25)}, ${center} ${midY}`;
         // Go Right
         d += ` C ${center + amp} ${midY + (waveHeight * 0.25)}, ${center + amp} ${endY - (waveHeight * 0.25)}, ${center} ${endY}`;
     }
 
+    // Don't render if height is 0
+    if (docHeight === 0) return null;
+
     return (
-        <div className="absolute top-0 left-0 w-full z-0 pointer-events-none overflow-hidden" style={{ height: docHeight }}>
+        <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
             <svg
                 width="100%"
                 height={docHeight}
                 className="absolute top-0 left-0"
                 preserveAspectRatio="none"
+                style={{ height: '100%' }} // Force SVG to match container height
             >
                 <defs>
                     <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -103,7 +71,6 @@ const MeanderingBackground = () => {
                     </linearGradient>
                 </defs>
 
-                {/* Background Track (dim) */}
                 <path
                     d={d}
                     stroke="rgba(255, 255, 255, 0.05)"
@@ -111,7 +78,6 @@ const MeanderingBackground = () => {
                     fill="none"
                 />
 
-                {/* Active Path (glowing) */}
                 <motion.path
                     d={d}
                     stroke="url(#timelineGradient)"

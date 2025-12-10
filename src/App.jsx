@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-gray-50 dark:bg-dark min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="relative bg-gray-50 dark:bg-dark min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
       <AnimatePresence>
         {loading && <LoadingScreen />}
       </AnimatePresence>
