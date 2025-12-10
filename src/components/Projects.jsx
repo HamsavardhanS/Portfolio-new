@@ -7,10 +7,28 @@ const Projects = () => {
     const [filter, setFilter] = useState('All');
     const [filteredProjects, setFilteredProjects] = useState(projects);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(1);
+
+    // Update items per page based on screen width
+    React.useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) {
+                setItemsPerPage(3); // Desktop
+            } else if (window.innerWidth >= 768) {
+                setItemsPerPage(2); // Tablet
+            } else {
+                setItemsPerPage(1); // Mobile
+            }
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleFilterChange = (category) => {
         setFilter(category);
-        setCurrentIndex(0); // Reset carousel to start when filtering
+        setCurrentIndex(0);
         if (category === 'All') {
             setFilteredProjects(projects);
         } else {
@@ -24,6 +42,16 @@ const Projects = () => {
 
     const prevProject = () => {
         setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+    };
+
+    // Calculate visible projects with circular wrapping
+    const getVisibleProjects = () => {
+        const visible = [];
+        for (let i = 0; i < itemsPerPage; i++) {
+            const index = (currentIndex + i) % filteredProjects.length;
+            visible.push(filteredProjects[index]);
+        }
+        return visible;
     };
 
     const ProjectCard = ({ project }) => (
@@ -112,43 +140,29 @@ const Projects = () => {
                     </div>
                 </motion.div>
 
-                {/* Desktop View: Grid */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <AnimatePresence mode='popLayout'>
-                        {filteredProjects.map((project) => (
-                            <motion.div
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                                key={project.id}
-                            >
-                                <ProjectCard project={project} />
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </div>
-
-                {/* Mobile View: Carousel */}
-                <div className="md:hidden relative px-2">
+                {/* Carousel Container */}
+                <div className="relative px-2">
                     <div className="overflow-hidden min-h-[500px]">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={filteredProjects[currentIndex].id}
-                                initial={{ opacity: 0, x: 100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 0.3 }}
-                                className="h-full"
-                            >
-                                <ProjectCard project={filteredProjects[currentIndex]} />
-                            </motion.div>
-                        </AnimatePresence>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <AnimatePresence mode='popLayout' initial={false}>
+                                {getVisibleProjects().map((project) => (
+                                    <motion.div
+                                        key={`${project.id}-index-${currentIndex}`} // Unique key to force re-render for animation
+                                        initial={{ opacity: 0, x: 50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -50 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="h-full"
+                                    >
+                                        <ProjectCard project={project} />
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </div>
                     </div>
 
-                    {/* Navigation Buttons for Mobile */}
-                    <div className="flex justify-center items-center gap-8 mt-6">
+                    {/* Navigation Buttons */}
+                    <div className="flex justify-center items-center gap-8 mt-8">
                         <button
                             onClick={prevProject}
                             className="w-12 h-12 rounded-full bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-white flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg active:scale-95"
@@ -156,9 +170,22 @@ const Projects = () => {
                         >
                             <FaChevronLeft size={20} />
                         </button>
-                        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                            {currentIndex + 1} / {filteredProjects.length}
-                        </span>
+
+                        {/* Dots Indicator */}
+                        <div className="flex gap-2">
+                            {filteredProjects.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentIndex(idx)}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex
+                                            ? 'w-6 bg-primary'
+                                            : 'bg-gray-300 dark:bg-gray-600 hover:bg-primary/50'
+                                        }`}
+                                    aria-label={`Go to project ${idx + 1}`}
+                                />
+                            ))}
+                        </div>
+
                         <button
                             onClick={nextProject}
                             className="w-12 h-12 rounded-full bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-white flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-lg active:scale-95"
