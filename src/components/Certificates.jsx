@@ -5,33 +5,48 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const Certificates = () => {
     const certificates = [
         {
-            title: 'Full-Stack Web Development',
-            issuer: 'Coursera',
-            date: '2023',
-            image: '/src/assets/cert1.jpg', // Replace with actual image path
-            link: '#'
-        },
-        {
-            title: 'React - The Complete Guide',
-            issuer: 'Udemy',
-            date: '2023',
+            title: 'React Web Developer',
+            issuer: 'Infosys SpringBoard',
+            date: '2024',
             image: '/src/assets/cert2.jpg',
-            link: '#'
+            link: 'https://drive.google.com/file/d/1c8-EPgD5le5BhAUez-uoVlBqyX1gDZCD/view?usp=drive_link'
         },
         {
-            title: 'Node.js Developer',
-            issuer: 'LinkedIn Learning',
-            date: '2022',
+            title: 'Data Structure & Algorithm',
+            issuer: 'Infosys SpringBoard',
+            date: '2024',
+            image: '/src/assets/cert2.jpg',
+            link: 'https://drive.google.com/file/d/1ANoL4cI7MfU9D1dStz__eiW0wF2bntIe/view?usp=drive_link'
+        },
+        {
+            title: 'Computer Networks',
+            issuer: 'Coursera',
+            date: '2024',
             image: '/src/assets/cert3.jpg',
-            link: '#'
+            link: 'https://drive.google.com/file/d/1KVrGh0kpRy4PoR-GF4rkiCcQV8Qhgt2W/view?usp=drive_link'
         },
         {
             title: 'Python Programming',
-            issuer: 'Codecademy',
-            date: '2022',
+            issuer: 'Coursera',
+            date: '2023',
             image: '/src/assets/cert4.jpg',
-            link: '#'
+            link: 'https://drive.google.com/file/d/1wI9T_FRl6OfpPmgeNA-Id-zJ_0noz68S/view?usp=drive_link'
+        },
+        {
+            title: 'DataScience Professional',
+            issuer: 'Oracle',
+            date: '2025',
+            image: '/src/assets/cert4.jpg',
+            link: 'https://drive.google.com/file/d/1HijUfrAqeM26is_b_xYhuF_RPp-wfctg/view?usp=drive_link'
+        },
+        {
+            title: 'Data Mining',
+            issuer: 'NPTEL',
+            date: '2024',
+            image: '/src/assets/cert4.jpg',
+            link: 'https://drive.google.com/file/d/1Ui0STLZcW8QRJBLt38CToMyqbgpmITg5/view?usp=sharing'
         }
+
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -149,8 +164,8 @@ const Certificates = () => {
                                     key={idx}
                                     onClick={() => setCurrentIndex(idx)}
                                     className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex
-                                            ? 'w-6 bg-primary'
-                                            : 'bg-gray-300 dark:bg-gray-600 hover:bg-primary/50'
+                                        ? 'w-6 bg-primary'
+                                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-primary/50'
                                         }`}
                                     aria-label={`Go to certificate ${idx + 1}`}
                                 />
