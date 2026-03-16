@@ -68,7 +68,7 @@ const Hero = () => {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
-                            href="https://drive.google.com/file/d/11tMXO-9m70tkR3iB2WzXNpZJpT6qdiJO/view?usp=drive_link"
+                            href="https://drive.google.com/file/d/19ZeGM52-MuXM-il6gysfL_a3QGO28h_3/view?usp=drive_link"
                             className="btn-primary flex items-center gap-2 group"
                         >
                             <FaDownload className="group-hover:-translate-y-1 transition-transform" />
